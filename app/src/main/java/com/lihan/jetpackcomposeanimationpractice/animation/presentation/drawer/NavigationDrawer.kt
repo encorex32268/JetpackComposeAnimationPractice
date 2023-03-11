@@ -68,6 +68,7 @@ fun DrawerBody(
                     fontSize = 14.sp
                 )
             }
+            Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }

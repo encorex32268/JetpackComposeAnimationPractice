@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.lihan.jetpackcomposeanimationpractice.animation.domain.Route
+import com.lihan.jetpackcomposeanimationpractice.animation.presentation.AnimateValueScreen
 import com.lihan.jetpackcomposeanimationpractice.animation.presentation.AnimateVisibilityScreen
 import com.lihan.jetpackcomposeanimationpractice.animation.presentation.drawer.DrawerBody
 import com.lihan.jetpackcomposeanimationpractice.animation.presentation.drawer.DrawerHeader
@@ -37,9 +38,13 @@ class MainActivity : ComponentActivity() {
                         DrawerHeader()
                         DrawerBody(
                             items = listOf(
-                            Route.ANIMATE_VISIBILITY
+                            Route.ANIMATE_VISIBILITY,
+                            Route.ANIMATE_VALUE,
                             ),
                             onItemClicked = {
+                                scope.launch {
+                                    scaffoldStateRemember.drawerState.close()
+                                }
                                 navigation.navigate(it)
                             }
                         )
@@ -69,6 +74,11 @@ class MainActivity : ComponentActivity() {
                             route = Route.ANIMATE_VISIBILITY
                         ){
                             AnimateVisibilityScreen()
+                        }
+                        composable(
+                            route = Route.ANIMATE_VALUE
+                        ){
+                            AnimateValueScreen()
                         }
                     }
                 }
